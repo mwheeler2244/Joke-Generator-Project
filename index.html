@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Box</title>
+    <style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    background-color: #6c63ff;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #5754d6;
+}
+
+.joke-box {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+    color: #333;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Content inside the box -->
+        <button class="btn">Get Joke</button>
+    </div>
+ 
+    <script>
+        const container = document.querySelector('.container')
+        const button = document.querySelector('.btn')
+
+
+        async function getJoke(){
+            const response = await fetch("https://icanhazdadjoke.com/", 
+            { method: 'GET',
+            headers: {
+            Accept: "application/json", // Required to get a JSON response
+          }, })
+
+          const jokeData = await response.json()
+          const joke = jokeData.joke
+
+          
+          const jokeContainer = document.querySelector('.joke-box')
+             if(jokeContainer){
+                 jokeContainer.remove()
+             }
+     
+            const jokeElement = document.createElement('p')
+            jokeElement.className = 'joke-box'
+            jokeElement.textContent = joke
+            container.insertBefore(jokeElement, button)
+
+             
+            
+        }
+        
+        button.addEventListener('click', getJoke);
+
+    </script>
+</body>
+</html>
