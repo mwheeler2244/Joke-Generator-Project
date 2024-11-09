@@ -16,4 +16,8 @@ The Joke Generator is a simple web application that fetches random dad jokes fro
 - **CSS**: Styling and layout of the application.
 - **JavaScript**: Fetching jokes from the API and handling user interactions.
 
+### Live Demo
+
+View the project live on GitHub Pages:  
+**[Joke Generator Project](https://mwheeler2244.github.io/Joke-Generator-Project/)**
 
